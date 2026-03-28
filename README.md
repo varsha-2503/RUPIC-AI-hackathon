@@ -6,6 +6,16 @@
 
 ---
 
+## ❓ Problem
+
+Most Indians lack access to personalised financial advice. Generic calculators give one-size-fits-all answers, financial advisors are expensive, and existing apps don't account for India-specific factors like 80C deductions, PPF, NPS, or the old vs new tax regime. First-time earners and young professionals are left guessing about savings, investments, and retirement.
+
+## ✅ Solution
+
+RUPIQ AI brings a personal financial advisor to everyone — for free. By combining **Groq AI** with Indian financial context, it analyses your real numbers and delivers a personalised action plan in seconds. No jargon, no generic tips — just clear, structured guidance built specifically for India.
+
+---
+
 ## 📸 Screenshots
 
 ### 🏠 Landing Page
