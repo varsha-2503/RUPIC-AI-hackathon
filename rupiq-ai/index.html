@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RUPIQ AI — Your AI Financial Advisor</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <!-- ═══ FLOATING DOODLES ═══ -->
+    <div class="doodle-layer">
+      <!-- Rupee symbol doodle -->
+      <svg class="d1" width="80" height="80" viewBox="0 0 80 80" fill="none">
+        <text
+          x="10"
+          y="60"
+          font-size="60"
+          font-family="serif"
+          fill="currentColor"
+          style="color: var(--accent)"
+        >
+          ₹
+        </text>
+      </svg>
+      <!-- Chart line doodle -->
+      <svg
+        class="d2"
+        width="100"
+        height="60"
+        viewBox="0 0 100 60"
+        fill="none"
+        stroke="var(--accent)"
+        stroke-width="2.5"
+        stroke-linecap="round"
+      >
+        <polyline points="5,50 25,30 45,40 65,15 95,5" />
+        <circle cx="95" cy="5" r="4" fill="var(--accent)" />
+      </svg>
+      <!-- Coin stack doodle -->
+      <svg
+        class="d3"
+        width="60"
+        height="80"
+        viewBox="0 0 60 80"
+        fill="none"
+        stroke="var(--accent2)"
+        stroke-width="2"
+        stroke-linecap="round"
+      >
+        <ellipse cx="30" cy="65" rx="22" ry="8" />
+        <ellipse cx="30" cy="48" rx="22" ry="8" />
+        <ellipse cx="30" cy="31" rx="22" ry="8" />
+        <line x1="8" y1="31" x2="8" y2="65" />
+        <line x1="52" y1="31" x2="52" y2="65" />
+      </svg>
+      <!-- Pie chart doodle -->
+      <svg class="d4" width="70" height="70" viewBox="0 0 70 70" fill="none">
+        <circle
+          cx="35"
+          cy="35"
+          r="28"
+          stroke="var(--accent3)"
+          stroke-width="2"
+          stroke-dasharray="88 44 22 22"
+          stroke-dashoffset="0"
+        />
+        <line
+          x1="35"
+          y1="35"
+          x2="35"
+          y2="7"
+          stroke="var(--accent3)"
+          stroke-width="2"
+        />
+        <line
+          x1="35"
+          y1="35"
+          x2="58"
+          y2="50"
+          stroke="var(--accent3)"
+          stroke-width="2"
+        />
+      </svg>
+      <!-- Infinity / flow -->
+      <svg
+        class="d5"
+        width="50"
+        height="30"
+        viewBox="0 0 50 30"
+        fill="none"
+        stroke="var(--success)"
+        stroke-width="2"
+        stroke-linecap="round"
+        opacity="0.5"
+      >
+        <path
+          d="M25 15 C25 5 40 5 40 15 C40 25 25 25 25 15 C25 5 10 5 10 15 C10 25 25 25 25 15"
+        />
+      </svg>
+    </div>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav id="navbar">
+      <a class="nav-logo" href="#"
+        ><span class="nav-logo-icon">₹</span>RUPIQ AI</a
+      >
+
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#story">How It Works</a>
+        <a href="#about">About</a>
+        <a href="#features" onclick="openModal('health')">Analyze</a>
+      </div>
+
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+          🌙
+        </button>
+        <div id="navGuest" style="display: flex; gap: 8px">
+          <button class="nav-btn nav-btn-outline" onclick="openAuth('login')">
+            Log In
+          </button>
+          <button class="nav-btn nav-btn-fill" onclick="openAuth('signup')">
+            Sign Up
+          </button>
+        </div>
+        <div class="nav-user" id="navUser">
+          <div class="nav-avatar" id="navAvatar">?</div>
+          <span class="nav-username" id="navUsername"></span>
+          <button class="nav-logout" onclick="logOut()">Log out</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="home">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          AI-Powered · Built for India
+        </div>
+        <h1>Your Money,<br /><em>Understood</em><br />by AI</h1>
+        <p class="hero-sub">
+          RUPIQ AI turns your numbers into a personalised financial roadmap —
+          from health score to FIRE planning, tax optimization to smart
+          investing.
+        </p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="openModal('health')">
+            Start Free Analysis →
+          </button>
+          <button
+            class="btn-ghost"
+            onclick="
+              document
+                .getElementById('story')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+          >
+            See How It Works
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-val" data-count="33">0</div>
+            <div class="stat-label">K+ Users Advised</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val" data-count="94">0</div>
+            <div class="stat-label">% Accuracy Rate</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val" data-count="4">0</div>
+            <div class="stat-label">AI-Powered Tools</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero SVG Illustration -->
+      <div class="hero-visual">
+        <svg
+          viewBox="0 0 380 340"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Card base -->
+          <rect
+            x="40"
+            y="60"
+            width="300"
+            height="220"
+            rx="24"
+            fill="rgba(0,212,255,0.05)"
+            stroke="rgba(0,212,255,0.2)"
+            stroke-width="1.5"
+          />
+          <!-- Graph bars -->
+          <rect
+            x="80"
+            y="180"
+            width="30"
+            height="60"
+            rx="6"
+            fill="rgba(0,212,255,0.25)"
+          />
+          <rect
+            x="125"
+            y="150"
+            width="30"
+            height="90"
+            rx="6"
+            fill="rgba(0,212,255,0.4)"
+          />
+          <rect
+            x="170"
+            y="120"
+            width="30"
+            height="120"
+            rx="6"
+            fill="rgba(0,212,255,0.6)"
+          />
+          <rect
+            x="215"
+            y="100"
+            width="30"
+            height="140"
+            rx="6"
+            fill="rgba(0,212,255,0.8)"
+          />
+          <rect
+            x="260"
+            y="130"
+            width="30"
+            height="110"
+            rx="6"
+            fill="rgba(0,212,255,0.5)"
+          />
+          <!-- Line overlay -->
+          <polyline
+            points="95,175 140,145 185,115 230,95 275,125"
+            stroke="#00d4ff"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle cx="95" cy="175" r="5" fill="#00d4ff" />
+          <circle cx="140" cy="145" r="5" fill="#00d4ff" />
+          <circle cx="185" cy="115" r="5" fill="#00d4ff" />
+          <circle cx="230" cy="95" r="5" fill="#00d4ff" />
+          <circle cx="275" cy="125" r="5" fill="#00d4ff" />
+          <!-- Label badge -->
+          <rect
+            x="160"
+            y="18"
+            width="120"
+            height="36"
+            rx="18"
+            fill="rgba(0,212,255,0.15)"
+            stroke="rgba(0,212,255,0.3)"
+            stroke-width="1"
+          />
+          <text
+            x="190"
+            y="40"
+            font-family="sans-serif"
+            font-size="13"
+            fill="#00d4ff"
+            font-weight="700"
+          >
+            ₹ RUPIQ AI
+          </text>
+          <!-- Floating percent -->
+          <rect
+            x="270"
+            y="70"
+            width="70"
+            height="36"
+            rx="12"
+            fill="rgba(16,185,129,0.15)"
+            stroke="rgba(16,185,129,0.3)"
+            stroke-width="1"
+          />
+          <text
+            x="280"
+            y="92"
+            font-family="sans-serif"
+            font-size="14"
+            fill="#10b981"
+            font-weight="700"
+          >
+            +24.5%
+          </text>
+          <!-- Rupee watermark -->
+          <text
+            x="150"
+            y="200"
+            font-size="80"
+            font-family="serif"
+            fill="rgba(0,212,255,0.04)"
+            font-weight="900"
+          >
+            ₹
+          </text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ═══ STORY SECTION ═══ -->
+    <section class="story-section" id="story">
+      <div class="story-inner">
+        <div class="story-label">How It Works</div>
+        <h2>Three steps to your<br /><span>financial clarity</span></h2>
+        <div class="story-steps">
+          <div class="story-step">
+            <div class="step-num">01</div>
+            <div class="step-icon">🔐</div>
+            <div class="step-title">Create your account</div>
+            <div class="step-desc">
+              Sign up in seconds. Your financial data stays private — we never
+              store sensitive numbers, everything stays local.
+            </div>
+          </div>
+          <div class="story-step">
+            <div class="step-num">02</div>
+            <div class="step-icon">📝</div>
+            <div class="step-title">Enter your numbers</div>
+            <div class="step-desc">
+              Income, expenses, age, goal. Four inputs is all RUPIQ AI needs to
+              understand your complete financial picture.
+            </div>
+          </div>
+          <div class="story-step">
+            <div class="step-num">03</div>
+            <div class="step-icon">🤖</div>
+            <div class="step-title">Get AI-powered advice</div>
+            <div class="step-desc">
+              Groq's Llama 3.1 AI processes your data and returns a rich,
+              structured report with actionable steps — in seconds.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURES ═══ -->
+    <section class="features" id="features">
+      <div class="section-header">
+        <div class="section-tag">Smart Tools</div>
+        <h2>Four Powerful Financial Tools</h2>
+        <p>
+          Every tool uses Groq AI to give you personalised, structured advice —
+          never generic tips.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feat-card" data-feature="health">
+          <div class="feat-icon">📊</div>
+          <h3>Money Health Score</h3>
+          <p>
+            A 0–100 financial health score with strengths, weaknesses, action
+            plan and ideal budget split — built for your life stage.
+          </p>
+          <div class="feat-pills">
+            <span class="pill">Score & Grade</span
+            ><span class="pill">Budget Analysis</span
+            ><span class="pill">Action Plan</span>
+          </div>
+          <button class="feat-btn" onclick="openModal('health')">
+            Check My Score →
+          </button>
+        </div>
+
+        <div class="feat-card" data-feature="fire">
+          <div class="feat-icon">🚀</div>
+          <h3>FIRE Planner</h3>
+          <p>
+            Calculate your FIRE number, optimized retirement age, and monthly
+            SIP breakdown to reach financial independence early.
+          </p>
+          <div class="feat-pills">
+            <span class="pill">FIRE Number</span
+            ><span class="pill">Retirement Age</span
+            ><span class="pill">Milestones</span>
+          </div>
+          <button class="feat-btn" onclick="openModal('fire')">
+            Plan My FIRE →
+          </button>
+        </div>
+
+        <div class="feat-card" data-feature="tax">
+          <div class="feat-icon">💰</div>
+          <h3>Tax Optimizer</h3>
+          <p>
+            Old vs New regime comparison, 80C / 80D / HRA deductions, and a
+            personalised action plan to legally minimise your tax.
+          </p>
+          <div class="feat-pills">
+            <span class="pill">Regime Comparison</span
+            ><span class="pill">Deductions</span
+            ><span class="pill">Tax Savings</span>
+          </div>
+          <button class="feat-btn" onclick="openModal('tax')">
+            Optimize My Tax →
+          </button>
+        </div>
+
+        <div class="feat-card" data-feature="invest">
+          <div class="feat-icon">📈</div>
+          <h3>Investment Guidance</h3>
+          <p>
+            Risk-adjusted portfolio strategy with specific fund picks, SIP
+            amounts, and a 5/10/20-year wealth projection.
+          </p>
+          <div class="feat-pills">
+            <span class="pill">Portfolio Allocation</span
+            ><span class="pill">Fund Picks</span
+            ><span class="pill">Wealth Projection</span>
+          </div>
+          <button class="feat-btn" onclick="openModal('invest')">
+            Build My Portfolio →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section class="about" id="about">
+      <div class="about-inner">
+        <div class="about-text">
+          <span class="section-label">About RUPIQ AI</span>
+          <h2>
+            We built this because
+            <strong>India deserves better financial advice</strong>
+          </h2>
+          <p>
+            Most financial advice in India is either expensive (hire a
+            consultant), biased (commission-driven agents), or generic (internet
+            articles that ignore your specific situation).
+          </p>
+          <p>
+            RUPIQ AI changes that. By combining
+            <strong>Groq's blazing-fast Llama 3.1 AI</strong> with deep Indian
+            financial context — tax slabs, SIP norms, PPF rules, FIRE math — we
+            deliver personalised, structured advice that rivals a professional
+            consultation, in seconds, for free.
+          </p>
+          <div class="about-values">
+            <div class="about-value">
+              <div class="about-value-icon">🔒</div>
+              <div class="about-value-text">
+                <strong>Privacy First</strong>
+                <span
+                  >Your data is never stored or sold. Every analysis is
+                  ephemeral.</span
+                >
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="about-value-icon">🇮🇳</div>
+              <div class="about-value-text">
+                <strong>Built for India</strong>
+                <span
+                  >FY25 tax slabs, PPF, NPS, ELSS, SGB — all Indian instruments
+                  included.</span
+                >
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="about-value-icon">⚡</div>
+              <div class="about-value-text">
+                <strong>Powered by Groq + Llama 3.1</strong>
+                <span
+                  >Sub-second AI inference. Real analysis, not templated
+                  responses.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div class="about-card-stack">
+            <div class="about-stat-card">
+              <div class="asc-icon">📊</div>
+              <div>
+                <div class="asc-val">33K+</div>
+                <div class="asc-label">Analyses completed</div>
+              </div>
+            </div>
+            <div class="about-stat-card">
+              <div class="asc-icon">💸</div>
+              <div>
+                <div class="asc-val">₹2.4Cr</div>
+                <div class="asc-label">Avg. savings unlocked per user</div>
+              </div>
+            </div>
+            <div class="about-stat-card">
+              <div class="asc-icon">⚡</div>
+              <div>
+                <div class="asc-val">&lt;2s</div>
+                <div class="asc-label">Average AI response time</div>
+              </div>
+            </div>
+            <div class="about-stat-card">
+              <div class="asc-icon">🌟</div>
+              <div>
+                <div class="asc-val">94%</div>
+                <div class="asc-label">User satisfaction rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TESTIMONIALS ═══ -->
+    <div class="trust-strip">
+      <h3>Trusted by people building wealth across India</h3>
+      <div style="overflow: hidden">
+        <div class="trust-scroll" id="trustScroll"></div>
+      </div>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+      <div class="footer-brand">
+        <div
+          class="nav-logo"
+          style="
+            -webkit-text-fill-color: transparent;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            font-family: &quot;Syne&quot;, sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            margin-bottom: 12px;
+          "
+        >
+          ₹ RUPIQ AI
+        </div>
+        <p>
+          AI-powered financial planning built for India. From health score to
+          FIRE, we've got your money covered.
+        </p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Tools</h4>
+          <a href="#" onclick="openModal('health')">Health Score</a>
+          <a href="#" onclick="openModal('fire')">FIRE Planner</a>
+          <a href="#" onclick="openModal('tax')">Tax Optimizer</a>
+          <a href="#" onclick="openModal('invest')">Investment Guide</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#about">About</a>
+          <a href="#story">How It Works</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 RUPIQ AI — Powered by Groq & Llama 3.1</p>
+        <p>
+          For informational purposes only. Not SEBI-registered financial advice.
+        </p>
+      </div>
+    </footer>
+
+    <!-- ═══ AUTH OVERLAY ═══ -->
+    <div class="auth-overlay" id="authOverlay" onclick="handleAuthClick(event)">
+      <div class="auth-box" id="authBox">
+        <button class="auth-close" onclick="closeAuth()">✕</button>
+        <span class="auth-logo">₹ RUPIQ AI</span>
+
+        <div class="auth-tabs">
+          <button
+            class="auth-tab active"
+            id="tabLogin"
+            onclick="switchTab('login')"
+          >
+            Log In
+          </button>
+          <button class="auth-tab" id="tabSignup" onclick="switchTab('signup')">
+            Sign Up
+          </button>
+        </div>
+
+        <div class="auth-error" id="authError"></div>
+        <div class="auth-success" id="authSuccess"></div>
+
+        <!-- LOGIN -->
+        <div class="auth-form-page active" id="loginPage">
+          <div class="a-input-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+          </div>
+          <div class="a-input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              id="loginPass"
+              placeholder="Your password"
+              autocomplete="current-password"
+            />
+          </div>
+          <button class="auth-submit" id="loginBtn" onclick="doLogin()">
+            <span id="loginBtnText">Log In →</span>
+            <div class="loader" id="loginLoader"></div>
+          </button>
+          <div class="auth-switch">
+            Don't have an account?
+            <span onclick="switchTab('signup')">Sign up free</span>
+          </div>
+        </div>
+
+        <!-- SIGNUP -->
+        <div class="auth-form-page" id="signupPage">
+          <div class="a-input-group">
+            <label>Full Name</label>
+            <input
+              type="text"
+              id="signupName"
+              placeholder="Arjun Sharma"
+              autocomplete="name"
+            />
+          </div>
+          <div class="a-input-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              id="signupEmail"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+          </div>
+          <div class="a-input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              id="signupPass"
+              placeholder="Min. 6 characters"
+              autocomplete="new-password"
+            />
+          </div>
+          <button class="auth-submit" id="signupBtn" onclick="doSignup()">
+            <span id="signupBtnText">Create Account →</span>
+            <div class="loader" id="signupLoader"></div>
+          </button>
+          <div class="auth-switch">
+            Already have an account?
+            <span onclick="switchTab('login')">Log in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ANALYSIS MODAL ═══ -->
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      onclick="handleModalClick(event)"
+    >
+      <div class="modal" id="mainModal">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+
+        <div class="modal-icon" id="modalIcon">📊</div>
+        <h2 id="modalTitle">Money Health Score</h2>
+        <p class="modal-sub" id="modalSub">
+          Enter your financial details for a full analysis
+        </p>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>Monthly Income (₹)</label>
+            <input type="number" id="income" placeholder="e.g. 75000" min="0" />
+          </div>
+          <div class="input-group">
+            <label>Monthly Expenses (₹)</label>
+            <input
+              type="number"
+              id="expenses"
+              placeholder="e.g. 45000"
+              min="0"
+            />
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Your Age</label>
+            <input
+              type="number"
+              id="age"
+              placeholder="e.g. 28"
+              min="18"
+              max="70"
+            />
+          </div>
+          <div class="input-group">
+            <label>Risk Appetite</label>
+            <select id="risk">
+              <option value="moderate">Moderate</option>
+              <option value="aggressive">Aggressive</option>
+              <option value="conservative">Conservative</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Primary Financial Goal</label>
+          <input
+            type="text"
+            id="goal"
+            placeholder="e.g. Retire by 45, Buy a house, Build ₹2Cr"
+          />
+        </div>
+
+        <button class="analyze-btn" id="analyzeBtn" onclick="submitData()">
+          <span id="btnText">Analyze with Groq AI</span>
+          <div class="loader" id="btnLoader"></div>
+        </button>
+
+        <div class="result-panel" id="resultPanel">
+          <div class="result-header">
+            <div class="result-title" id="resultTitle">Analysis Complete</div>
+            <div class="result-badge" id="resultBadge">AI Generated</div>
+          </div>
+          <div id="resultContent"></div>
+        </div>
+
+        <div class="error-msg" id="errorMsg" style="display: none"></div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/script.js"></script>
+  </body>
+</html>
